@@ -1,0 +1,71 @@
+[1/5] cd /home/voidvex/esp/tcp_server/build/esp-idf/esptool_py && /home/voidvex/.espressif/python_env/idf5.2_py3.10_env/bin/python /home/voidvex/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/voidvex/esp/tcp_server/build/partition_table/partition-table.bin /home/voidvex/esp/tcp_server/build/tcp_server.bin
+tcp_server.bin binary size 0xba9b0 bytes. Smallest app partition is 0x100000 bytes. 0x45650 bytes (27%) free.
+[2/5] Performing build step for 'bootloader'
+[1/1] cd /home/voidvex/esp/tcp_server/build/bootloader/esp-idf/esptool_py && /home/voidvex/.espressif/python_env/idf5.2_py3.10_env/bin/python /home/voidvex/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/voidvex/esp/tcp_server/build/bootloader/bootloader.bin
+Bootloader binary size 0x68a0 bytes. 0x760 bytes (7%) free.
+[3/5] No install step for 'bootloader'
+[4/5] Completed 'bootloader'
+[4/5] cd /home/voidvex/esp/esp-idf/components/esptool_py && /usr/bin/cmake -D IDF_PATH=/home/voidvex/esp/esp-idf -D "SERIAL_TOOL=/home/voidvex/.espressif/python_env/idf5.2_py3.10_env/bin/python;;/home/voidvex/esp/esp-idf/components/esptool_py/esptool/esptool.py;--chip;esp32" -D "SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@flash_args" -D WORKING_DIRECTORY=/home/voidvex/esp/tcp_server/build -P /home/voidvex/esp/esp-idf/components/esptool_py/run_serial_tool.cmake
+esptool esp32 -p /dev/ttyUSB0 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 40m --flash_size 2MB 0x1000 bootloader/bootloader.bin 0x10000 tcp_server.bin 0x8000 partition_table/partition-table.bin
+esptool.py v4.5.1
+Serial port /dev/ttyUSB0
+Connecting.....
+Chip is ESP32-D0WDQ6 (revision v1.0)
+Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme None
+Crystal is 40MHz
+MAC: 58:bf:25:17:3c:98
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00001000 to 0x00007fff...
+Flash will be erased from 0x00010000 to 0x000cafff...
+Flash will be erased from 0x00008000 to 0x00008fff...
+Compressed 26784 bytes to 16821...
+Writing at 0x00001000... (50 %)
+Writing at 0x0000767c... (100 %)
+Wrote 26784 bytes (16821 compressed) at 0x00001000 in 0.8 seconds (effective 255.6 kbit/s)...
+Hash of data verified.
+Compressed 764336 bytes to 494416...
+Writing at 0x00010000... (3 %)
+Writing at 0x0001c6f1... (6 %)
+Writing at 0x00024e0e... (9 %)
+Writing at 0x0002a34d... (12 %)
+Writing at 0x00034520... (16 %)
+Writing at 0x00039f8a... (19 %)
+Writing at 0x0003fa27... (22 %)
+Writing at 0x000450a8... (25 %)
+Writing at 0x0004abad... (29 %)
+Writing at 0x00050102... (32 %)
+Writing at 0x0005569c... (35 %)
+Writing at 0x0005ad6e... (38 %)
+Writing at 0x00060767... (41 %)
+Writing at 0x00066360... (45 %)
+Writing at 0x0006be73... (48 %)
+Writing at 0x0007111a... (51 %)
+Writing at 0x00076568... (54 %)
+Writing at 0x0007ba62... (58 %)
+Writing at 0x00080dfb... (61 %)
+Writing at 0x00086555... (64 %)
+Writing at 0x0008bdaa... (67 %)
+Writing at 0x00091a55... (70 %)
+Writing at 0x00096f72... (74 %)
+Writing at 0x0009ca47... (77 %)
+Writing at 0x000a27b2... (80 %)
+Writing at 0x000a807a... (83 %)
+Writing at 0x000ad755... (87 %)
+Writing at 0x000b6383... (90 %)
+Writing at 0x000be5b8... (93 %)
+Writing at 0x000c43b8... (96 %)
+Writing at 0x000c9762... (100 %)
+Wrote 764336 bytes (494416 compressed) at 0x00010000 in 11.3 seconds (effective 542.7 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 103...
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (103 compressed) at 0x00008000 in 0.1 seconds (effective 337.0 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...

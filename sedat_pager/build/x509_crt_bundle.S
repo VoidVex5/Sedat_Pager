@@ -1,4 +1,4 @@
-/* * Data converted from /home/voidvex/esp/sedat_pager/build/esp-idf/mbedtls/x509_crt_bundle
+/* * Data converted from /home/voidvex/esp/sedat_Pager/sedat_pager/build/esp-idf/mbedtls/x509_crt_bundle
  */
 .data
 .section .rodata.embedded

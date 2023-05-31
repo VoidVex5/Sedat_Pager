@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/home/voidvex/esp/tcp_server/build/CMakeFiles/bootloader
+/home/voidvex/esp/tcp_server/build/CMakeFiles/bootloader.rule
+/home/voidvex/esp/tcp_server/build/CMakeFiles/bootloader-complete.rule
+/home/voidvex/esp/tcp_server/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/home/voidvex/esp/tcp_server/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/home/voidvex/esp/tcp_server/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/home/voidvex/esp/tcp_server/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/home/voidvex/esp/tcp_server/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/home/voidvex/esp/tcp_server/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/home/voidvex/esp/tcp_server/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

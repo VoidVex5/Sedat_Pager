@@ -37,7 +37,7 @@ int main(int argc, char ** argv) {
 				break;
 			zerOut(recvline);
 		}
-		snprintf((char*)buff, sizeof(buff), "HTTP/1.0 200 OK\r\n\r\nHello");
+		snprintf((char*)buff, sizeof(buff), "HTTP/1.0 200 OK \r\n\r\nHELLO");
 
 		write(connfd, (char*)buff, strlen(buff));
 		close(connfd);
