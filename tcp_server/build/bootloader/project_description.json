@@ -1,8 +1,8 @@
 {
     "project_name":       "bootloader",
     "project_path":       "/home/voidvex/esp/esp-idf/components/bootloader/subproject",
-    "build_dir":          "/home/voidvex/esp/tcp_server/build/bootloader",
-    "config_file":        "/home/voidvex/esp/tcp_server/sdkconfig",
+    "build_dir":          "/home/voidvex/esp/sedat_Pager/tcp_server/build/bootloader",
+    "config_file":        "/home/voidvex/esp/sedat_Pager/tcp_server/sdkconfig",
     "config_defaults":    "",
     "bootloader_elf":     "",
     "app_elf":            "bootloader.elf",

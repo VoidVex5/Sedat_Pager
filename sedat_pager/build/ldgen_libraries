@@ -4,6 +4,7 @@
 /home/voidvex/esp/sedat_Pager/sedat_pager/build/esp-idf/driver/libdriver.a
 /home/voidvex/esp/sedat_Pager/sedat_pager/build/esp-idf/esp_pm/libesp_pm.a
 /home/voidvex/esp/sedat_Pager/sedat_pager/build/esp-idf/mbedtls/libmbedtls.a
+/home/voidvex/esp/sedat_Pager/sedat_pager/build/esp-idf/esp_bootloader_format/libesp_bootloader_format.a
 /home/voidvex/esp/sedat_Pager/sedat_pager/build/esp-idf/esp_app_format/libesp_app_format.a
 /home/voidvex/esp/sedat_Pager/sedat_pager/build/esp-idf/bootloader_support/libbootloader_support.a
 /home/voidvex/esp/sedat_Pager/sedat_pager/build/esp-idf/esp_partition/libesp_partition.a
@@ -56,8 +57,8 @@
 /home/voidvex/esp/sedat_Pager/sedat_pager/build/esp-idf/fatfs/libfatfs.a
 /home/voidvex/esp/sedat_Pager/sedat_pager/build/esp-idf/json/libjson.a
 /home/voidvex/esp/sedat_Pager/sedat_pager/build/esp-idf/mqtt/libmqtt.a
+/home/voidvex/esp/sedat_Pager/sedat_pager/build/esp-idf/nvs_sec_provider/libnvs_sec_provider.a
 /home/voidvex/esp/sedat_Pager/sedat_pager/build/esp-idf/perfmon/libperfmon.a
 /home/voidvex/esp/sedat_Pager/sedat_pager/build/esp-idf/spiffs/libspiffs.a
-/home/voidvex/esp/sedat_Pager/sedat_pager/build/esp-idf/ulp/libulp.a
 /home/voidvex/esp/sedat_Pager/sedat_pager/build/esp-idf/wifi_provisioning/libwifi_provisioning.a
 /home/voidvex/esp/sedat_Pager/sedat_pager/build/esp-idf/main/libmain.a

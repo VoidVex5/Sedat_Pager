@@ -317,7 +317,7 @@ LINK_WITH_TRUSTED_STORAGE:BOOL=OFF
 MBEDTLS_FATAL_WARNINGS:BOOL=ON
 
 //No help, variable specified on the command line.
-PYTHON:UNINITIALIZED=/home/voidvex/.espressif/python_env/idf5.1_py3.10_env/bin/python
+PYTHON:UNINITIALIZED=/home/voidvex/.espressif/python_env/idf5.2_py3.10_env/bin/python
 
 //No help, variable specified on the command line.
 PYTHON_DEPS_CHECKED:UNINITIALIZED=1
@@ -513,7 +513,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=84
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=86
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -561,7 +561,7 @@ C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS:INTERNAL=1
 //Details about finding Git
 FIND_PACKAGE_MESSAGE_DETAILS_Git:INTERNAL=[/usr/bin/git][v2.40.1()]
 //Details about finding Python3
-FIND_PACKAGE_MESSAGE_DETAILS_Python3:INTERNAL=[/home/voidvex/.espressif/python_env/idf5.1_py3.10_env/bin/python][cfound components: Interpreter ][v3.10.10()]
+FIND_PACKAGE_MESSAGE_DETAILS_Python3:INTERNAL=[/home/voidvex/.espressif/python_env/idf5.2_py3.10_env/bin/python][cfound components: Interpreter ][v3.10.10()]
 //ADVANCED property for variable: GIT_EXECUTABLE
 GIT_EXECUTABLE-ADVANCED:INTERNAL=1
 //Have include stddef.h
@@ -580,10 +580,10 @@ _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/usr/local
 _Python3_Compiler_REASON_FAILURE:INTERNAL=
 //Development reason failure
 _Python3_Development_REASON_FAILURE:INTERNAL=
-_Python3_EXECUTABLE:INTERNAL=/home/voidvex/.espressif/python_env/idf5.1_py3.10_env/bin/python
+_Python3_EXECUTABLE:INTERNAL=/home/voidvex/.espressif/python_env/idf5.2_py3.10_env/bin/python
 //Python3 Properties
-_Python3_INTERPRETER_PROPERTIES:INTERNAL=Python;3;10;10;32;;;abi3;/usr/lib/python3.10;/usr/lib/python3.10;/home/voidvex/.espressif/python_env/idf5.1_py3.10_env/lib/python3.10/site-packages;/home/voidvex/.espressif/python_env/idf5.1_py3.10_env/lib/python3.10/site-packages
-_Python3_INTERPRETER_SIGNATURE:INTERNAL=20a7938e8ad71728614d68253b285783
+_Python3_INTERPRETER_PROPERTIES:INTERNAL=Python;3;10;10;32;;;abi3;/usr/lib/python3.10;/usr/lib/python3.10;/home/voidvex/.espressif/python_env/idf5.2_py3.10_env/lib/python3.10/site-packages;/home/voidvex/.espressif/python_env/idf5.2_py3.10_env/lib/python3.10/site-packages
+_Python3_INTERPRETER_SIGNATURE:INTERNAL=9191568b859884466caf3d1e1021d6a9
 //Interpreter reason failure
 _Python3_Interpreter_REASON_FAILURE:INTERNAL=
 //NumPy reason failure

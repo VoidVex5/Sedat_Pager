@@ -5,18 +5,18 @@ cmake_minimum_required(VERSION 3.5)
 
 file(MAKE_DIRECTORY
   "/home/voidvex/esp/esp-idf/components/bootloader/subproject"
-  "/home/voidvex/esp/tcp_server/build/bootloader"
-  "/home/voidvex/esp/tcp_server/build/bootloader-prefix"
-  "/home/voidvex/esp/tcp_server/build/bootloader-prefix/tmp"
-  "/home/voidvex/esp/tcp_server/build/bootloader-prefix/src/bootloader-stamp"
-  "/home/voidvex/esp/tcp_server/build/bootloader-prefix/src"
-  "/home/voidvex/esp/tcp_server/build/bootloader-prefix/src/bootloader-stamp"
+  "/home/voidvex/esp/sedat_Pager/tcp_server/build/bootloader"
+  "/home/voidvex/esp/sedat_Pager/tcp_server/build/bootloader-prefix"
+  "/home/voidvex/esp/sedat_Pager/tcp_server/build/bootloader-prefix/tmp"
+  "/home/voidvex/esp/sedat_Pager/tcp_server/build/bootloader-prefix/src/bootloader-stamp"
+  "/home/voidvex/esp/sedat_Pager/tcp_server/build/bootloader-prefix/src"
+  "/home/voidvex/esp/sedat_Pager/tcp_server/build/bootloader-prefix/src/bootloader-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "/home/voidvex/esp/tcp_server/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
+    file(MAKE_DIRECTORY "/home/voidvex/esp/sedat_Pager/tcp_server/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "/home/voidvex/esp/tcp_server/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "/home/voidvex/esp/sedat_Pager/tcp_server/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
 endif()

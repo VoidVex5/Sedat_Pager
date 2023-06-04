@@ -1,0 +1,8 @@
+[0;33m--- idf_monitor on /dev/ttyUSB0 115200 ---[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H ---[0m
+[0;33m0x40080400: _init at ??:?
+[0m
+[0;33m0x4008112c: call_start_cpu1 at /home/voidvex/esp/esp-idf/components/esp_system/port/cpu_start.c:154
+[0m
+[0;33mWarning: checksum mismatch between flashed and built applications. Checksum of built application is 6734dc5882bb3ccb6bc24f3c20e69a8e4a0da7c8c0408ddb57422f054e78cc87[0m
+[0m

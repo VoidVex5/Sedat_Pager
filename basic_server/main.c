@@ -31,15 +31,18 @@ int main(int argc, char ** argv) {
 		zerOut(recvline);
 
 		while ((n = read(connfd, recvline, MAXLINE-1)) > 0) {
-			fprintf(stdout, "\n%s\n%s", bin2hex(recvline, n));
-		
-			if (recvline[n-1] == '\n')
-				break;
+			recvline[n-1] = '\0';
+			fprintf(stdout, "\n%s\n%s\n", recvline, bin2hex(recvline, n));
+			
+			if (!(strcmp(recvline, "end\0"))) {
+				snprintf((char*)buff, sizeof(buff), "CONNECTION TERMINATED\n\0");
+				write(connfd, (char*)buff, strlen(buff));
+				close(connfd);
+			}
 			zerOut(recvline);
 		}
 		snprintf((char*)buff, sizeof(buff), "HTTP/1.0 200 OK \r\n\r\nHELLO");
 
 		write(connfd, (char*)buff, strlen(buff));
-		close(connfd);
 	}
 }

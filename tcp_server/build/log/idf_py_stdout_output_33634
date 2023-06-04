@@ -1,7 +1,0 @@
-[1/4] cd /home/voidvex/esp/tcp_server/build/esp-idf/esptool_py && /home/voidvex/.espressif/python_env/idf5.2_py3.10_env/bin/python /home/voidvex/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/voidvex/esp/tcp_server/build/partition_table/partition-table.bin /home/voidvex/esp/tcp_server/build/tcp_server.bin
-tcp_server.bin binary size 0xba9b0 bytes. Smallest app partition is 0x100000 bytes. 0x45650 bytes (27%) free.
-[2/4] Performing build step for 'bootloader'
-[1/1] cd /home/voidvex/esp/tcp_server/build/bootloader/esp-idf/esptool_py && /home/voidvex/.espressif/python_env/idf5.2_py3.10_env/bin/python /home/voidvex/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/voidvex/esp/tcp_server/build/bootloader/bootloader.bin
-Bootloader binary size 0x68a0 bytes. 0x760 bytes (7%) free.
-[3/4] No install step for 'bootloader'
-[4/4] Completed 'bootloader'

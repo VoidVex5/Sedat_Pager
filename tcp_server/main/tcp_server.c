@@ -31,49 +31,128 @@
 
 static const char *TAG = "Remote-LCD";
 
-static void do_retransmit(const int sock)
+void str2hex(char *str, int len) { // turns given string into a hex sequence 
+	const char hexdig[] = "0123456789ABCDEF"; // the hexidecimal digits
+	char str2[len * 3]; // one character needs 3 bytes: two hex digits then a space
+	for (int i = 0; i < len*3; i += 3) {
+		str2[i] = hexdig[ (*(char*)(str+i) % 0x10) ]; // just a simple little thing 
+		str2[i+1] = hexdig[ (*(char*)(str+i) / 0x10) ];
+		str2[i+2] = ' ';
+	}
+	str2[len-1] = 0; // null-terminate it
+	ESP_LOGI(TAG, "String to text: %s", str2);
+	return;
+}
+
+int write_cmd(const int sock) {
+	int wd, rd; // the write & read returns
+	char buff[8]; // the buffer to which I'll record the command
+	// I hardcoded the lengths of these buffers 
+	if ((wd = send(sock, "Enter command hex code (example: \"0x01\"): ", 42, 0)) < 0) {
+		ESP_LOGE(TAG, "Error at command prompt, errno %d", errno); // return the error number if it fails
+	}
+	rd = recv(sock, buff, 8, 0); // the command input
+	if (rd < 0) { // standard error checking for inputs, should be a way to automate it tbh
+		ESP_LOGE(TAG, "Error occured during getting command, errno: %d", errno);
+		return -1;
+	} else if (rd == 0) { 
+		ESP_LOGE(TAG, "Connection terminated before getting command, errno %d", errno);
+		return 1;
+	}
+	buff[rd] = 0; // null terminate the buffer
+
+	// I am assuming that someone sends the input in the format 0xNN and that I cab just directky mess with the two Ns
+	int cmd = 0; // actually turn the command into a sendable hex number
+	cmd += (buff[2] - '0') << 4; // upper digit
+	cmd += (buff[3] - '0'); // lower digit
+
+	lcd_send_cmd(cmd); // sends it to the LCD 
+	return 0;
+}
+
+int write_data(const int sock) {
+	int wd, rd; // write and read returns 
+	char buff[32]; // the answer buffer
+
+	if ((wd = send(sock, "Enter max 32 characters of data to write (example: \"hello\"): ", 61, 0)) < 0)
+		ESP_LOGE(TAG, "Error at data prompt, errno %d", errno);
+	
+	rd = recv(sock, buff, 32, 0); // gets string to send 
+	if (rd < 0) { 
+		ESP_LOGE(TAG, "Error occured during getting data, errno: %d", errno);
+		return -1;
+	}
+	else if (rd == 0) { 
+		ESP_LOGE(TAG, "Connection terminated before getting data, errno %d", errno);
+		return 1;
+	}
+	buff[rd] = 0;
+
+	if (rd > 16) { // send it in two parts because the LCD is 2x16 
+		lcd_send_string(buff);
+		lcd_send_string((buff+16));
+	} else 
+		lcd_send_string(buff);
+
+	return 0;
+}
+
+static void do_retransmit(const int sock) // meat & potatoes of the whole program
 {
-	enum qState_t {
+	enum qState_t { // a weird enum structure for the question, no real use tbh
 		Asked=1,
 		Answered=2,
 		Invalid=3,
-		done
+		Done=4,
 	};
 	
 	enum qState_t QS;
 
-	char* question = "Do you want to send a command (Input: \"cmd\") or write data (Input \"write\")?: \n";
-    int len_q = (sizeof(question) / sizeof(*question));
-	int len;
-    char rx_buffer[128];
+	const char *question = "Do you want to send a command (Input: \"cmd\") or write data (Input \"write\")?: \n";
+	// I made the buffer small specifically assuming that people will send "cmd" or "write" only
+	int len; // read return
+	char ans_buff[8]; 
 
-    do { // write the command & text getter
-        int wd = send(sock, question, len_q, 0);
+    do {
+		int wd = send(sock, question, 78, 0); // send return
 		if (wd < 0) {
 			ESP_LOGE(TAG, "Error occured during asking: errno %d", errno);
 			return;
 		}
 		ESP_LOGI(TAG, "Question Asked");
-		
-		len = recv(sock, rx_buffer, sizeof(rx_buffer) - 1, 0);
-        if (len < 0) {
-            ESP_LOGE(TAG, "Error occurred during receiving: errno %d", errno);
-        } else if (len == 0) {
-            ESP_LOGW(TAG, "Connection closed");
-        } else {
-            rx_buffer[len] = 0; // Null-terminate whatever is received and treat it like a string
-            ESP_LOGI(TAG, "Received %d bytes: %s", len, rx_buffer);
-            // send() can return less bytes than supplied length.
-            // Walk-around for robust implementation.
-			
-			
-            }
-        }
-    } while (len > 0);
+		QS = Asked;
+
+		while (QS != Answered) { 
+			len = recv(sock, ans_buff, 8, 0);
+			if (len < 0) 
+				ESP_LOGE(TAG, "Error occurred during first input: errno %d", errno);
+			else if (len == 0) 
+				ESP_LOGE(TAG, "Connection closed before answer: errno %d", errno);
+			else 
+				ans_buff[len-1] = 0;
+
+			if (!(strcmp("cmd", ans_buff) || !(strcmp("cmd\n", ans_buff)))) { 
+				// When using netcat, the newline gets transmitted as well but I'm not sure if the receive of the function works the same
+				if (write_cmd(sock) != 0) 
+					return;
+				QS = Answered;
+			}
+			else if (!(strcmp("write", ans_buff)) || !(strcmp("write\n", ans_buff))) {
+				// same deal
+				if (write_data(sock) != 0) 
+					return;
+				QS = Answered;
+			}
+			else 
+				QS = Invalid;
+
+			memset(ans_buff, 0, 8); // set the answer buffer once more till I get a valid answer
+		}
+
+    } while (1); // infinite loop till connection terminates
 }
 
-static void tcp_server_task(void *pvParameters)
-{
+static void tcp_server_task(void *pvParameters) { // this is code taken from the esp-idf socket server exanple
     char addr_str[128];
     int addr_family = (int)pvParameters;
     int ip_protocol = 0;
@@ -173,8 +252,7 @@ CLEAN_UP:
     vTaskDelete(NULL);
 }
 
-void app_main(void)
-{
+void app_main(void) {
     ESP_ERROR_CHECK(nvs_flash_init());
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
@@ -184,7 +262,12 @@ void app_main(void)
      * examples/protocols/README.md for more information about this function.
      */
     ESP_ERROR_CHECK(example_connect());
+	
+	lcd_init(); // init the LCD to be used
+	lcd_clear(); // clear the screen
 
+
+	// actually start the socket 
 #ifdef CONFIG_EXAMPLE_IPV4
     xTaskCreate(tcp_server_task, "tcp_server", 4096, (void*)AF_INET, 5, NULL);
 #endif

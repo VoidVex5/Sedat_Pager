@@ -1,6 +1,9 @@
 
 
 #include "i2c-lcd.h"
+#include "esp_log.h"
+#include "driver/i2c.h"
+#include "unistd.h"
 
 esp_err_t err;
 
@@ -20,7 +23,7 @@ void lcd_send_cmd (char cmd)
 	data_t[2] = data_l|0x0C;  //en=1, rs=0
 	data_t[3] = data_l|0x08;  //en=0, rs=0
 	err = i2c_master_write_to_device(I2C_NUM, SLAVE_ADDRESS_LCD, data_t, 4, 1000);
-	if (err!=0) ESP_LOGI(TAG, "Error in sending command");
+	if (err!=0) ESP_LOGE(TAG, "Error in sending command (%#2x): error %s", cmd, esp_err_to_name(err));
 }
 
 void lcd_send_data (char data)
@@ -34,7 +37,7 @@ void lcd_send_data (char data)
 	data_t[2] = data_l|0x0D;  //en=1, rs=0
 	data_t[3] = data_l|0x09;  //en=0, rs=0
 	err = i2c_master_write_to_device(I2C_NUM, SLAVE_ADDRESS_LCD, data_t, 4, 1000);
-	if (err!=0) ESP_LOGI(TAG, "Error in sending data");
+	if (err!=0) ESP_LOGE(TAG, "Error in sending data (%#2x): errno %s", data, esp_err_to_name(err));
 }
 
 void lcd_clear (void)

@@ -1,0 +1,17 @@
+[1/9] Performing build step for 'bootloader'
+[1/1] cd /home/voidvex/esp/sedat_Pager/sedat_pager/build/bootloader/esp-idf/esptool_py && /home/voidvex/.espressif/python_env/idf5.2_py3.10_env/bin/python /home/voidvex/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x1000 /home/voidvex/esp/sedat_Pager/sedat_pager/build/bootloader/bootloader.bin
+Bootloader binary size 0x68a0 bytes. 0x760 bytes (7%) free.
+[2/9] No install step for 'bootloader'
+[3/9] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/i2c-lcd.c.obj
+[4/9] Completed 'bootloader'
+[5/9] Linking C static library esp-idf/main/libmain.a
+[6/9] Generating ld/sections.ld
+[7/9] Linking CXX executable sedat_pager.elf
+[8/9] Generating binary image from built executable
+esptool.py v4.5.1
+Creating esp32 image...
+Merged 2 ELF sections
+Successfully created esp32 image.
+Generated /home/voidvex/esp/sedat_Pager/sedat_pager/build/sedat_pager.bin
+[9/9] cd /home/voidvex/esp/sedat_Pager/sedat_pager/build/esp-idf/esptool_py && /home/voidvex/.espressif/python_env/idf5.2_py3.10_env/bin/python /home/voidvex/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /home/voidvex/esp/sedat_Pager/sedat_pager/build/partition_table/partition-table.bin /home/voidvex/esp/sedat_Pager/sedat_pager/build/sedat_pager.bin
+sedat_pager.bin binary size 0x2fb90 bytes. Smallest app partition is 0x100000 bytes. 0xd0470 bytes (81%) free.

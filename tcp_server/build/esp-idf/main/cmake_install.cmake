@@ -1,4 +1,4 @@
-# Install script for directory: /home/voidvex/esp/tcp_server/main
+# Install script for directory: /home/voidvex/esp/sedat_Pager/tcp_server/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

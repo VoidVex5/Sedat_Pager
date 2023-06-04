@@ -2,7 +2,6 @@
 #include "esp_log.h"
 #include "driver/i2c.h"
 #include "i2c-lcd.h"
-#include "client_socket.h"
 
 static const char *TAG = "sedat_pager_main";
 
@@ -29,29 +28,8 @@ static esp_err_t i2c_master_init(void) // initialize the i2c master
 
 
 void app_main(void) {
-	esp_err_t status = WIFI_FAILURE;
-	// init storage
-	esp_err_t ret = nvs_flash_init();
-	if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
-		ESP_ERROR_CHECK(nvs_flash_erase());
-		ret = nvs_flash_init();
-	}
-	ESP_ERROR_CHECK(ret);
 	
-	status = connect_wifi((uint8_t*)"idealab");
-	if (WIFI_SUCCESS != status)
-	{
-		ESP_LOGI(TAG, "Failed to associate to AP, dying...");
-		return;
-	}
-	
-	status = connect_tcp_server();
-	if (TCP_SUCCESS != status)
-	{
-		ESP_LOGI(TAG, "Failed to connect to remote server, dying...");
-		return;
-	}
-	/*ESP_ERROR_CHECK(i2c_master_init());
+	ESP_ERROR_CHECK(i2c_master_init());
     ESP_LOGI(TAG, "I2C initialized successfully");
     lcd_init();
     lcd_clear();
@@ -61,7 +39,4 @@ void app_main(void) {
 
     lcd_put_cur(1, 0);
     lcd_send_string("from ESP32");
-	*/
-
-
 }

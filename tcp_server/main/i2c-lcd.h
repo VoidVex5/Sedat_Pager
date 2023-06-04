@@ -2,7 +2,6 @@
 #include "unistd.h"
 #include <stdio.h>
 #include "driver/i2c.h"
-#include "i2c-lcd.h"
 
 void lcd_init (void);   // initialize lcd
 
