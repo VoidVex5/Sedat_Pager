@@ -1,7 +1,7 @@
 # Remote Control LCD
 This program allows us to control a 2x16 LCD screen remotely via websockets. The websocket server code for the ESP32 was taken from the socket server example from [esp-idf](https://github.com/espressif/esp-idf) found in the [examples/protocols/sockets/tcp_server](https://github.com/espressif/esp-idf/tree/903af13e847cd301e476d8b16b4ee1c21b30b5c6/examples/protocols/sockets/tcp_server) subdirectory. 
 
-For a better README read the one in the [esp-idf](https://github.com/espressif/esp-idf/tree/903af13e847cd301e476d8b16b4ee1c21b30b5c6/examples/protocols/sockets/tcp_server)
+For a better README read the one in the [esp-idf](https://github.com/espressif/esp-idf/tree/903af13e847cd301e476d8b16b4ee1c21b30b5c6/examples/protocols/sockets/tcp_server).
 
 # How to build
 * Clone repository (`git clone https://github.com/VoidVex5/sedat_Pager.git`)
